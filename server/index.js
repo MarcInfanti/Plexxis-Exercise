@@ -5,11 +5,7 @@ const employees = require('./data/employees.json');
 const bodyParser = require('body-parser'); 
 
 app.use(bodyParser.json());
-
-var corsOptions = {
-  origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200
-}
+app.use(cors());
 
 //color code validation
 function isValidColor(color) {
@@ -17,9 +13,23 @@ function isValidColor(color) {
   return regex.test(color);
 }
 
+const colorMap = {
+  red: '#FF0000',
+  orange: '#FFA500',
+  yellow: '#FFFF00',
+  green: '#00FF00',
+  blue: '#0000FF',
+  purple: '#800080',
+  cyan: '#00FFFF',
+  magenta: '#FF00FF',
+  gray: '#808080',
+  black: '#000000',
+  white: '#FFFFFF',
+};
+
 //GET ALL EMPLOYEES
 
-app.get('/api/employees', cors(corsOptions), (req, res, next) => {
+app.get('/api/employees', (req, res, next) => {
   console.log('GET /api/employees');
 
   try {
@@ -35,7 +45,7 @@ app.get('/api/employees', cors(corsOptions), (req, res, next) => {
 
 //GET EMPLOYEE BY ID
 
-app.get('/api/employee/:id', cors(corsOptions), (req, res, next) => {
+app.get('/api/employee/:id', (req, res, next) => {
   console.log('GET /api/employee/:id');
 
   try {
@@ -58,7 +68,7 @@ app.get('/api/employee/:id', cors(corsOptions), (req, res, next) => {
 
 //CREATE EMPLOYEE
 
-app.post('/api/employee/create', cors(corsOptions), (req, res, next) => {
+app.post('/api/employee/create', (req, res, next) => {
   console.log('POST /api/employee/create');
 
   try {
@@ -106,20 +116,6 @@ app.post('/api/employee/create', cors(corsOptions), (req, res, next) => {
 
     //convert color to hexadecimal if its a valid color name
     const lowercaseColor = newEmployee.color.toLowerCase();
-    const colorMap = {
-      red: '#FF0000',
-      orange: '#FFA500',
-      yellow: '#FFFF00',
-      green: '#00FF00',
-      blue: '#0000FF',
-      purple: '#800080',
-      cyan: '#00FFFF',
-      magenta: '#FF00FF',
-      gray: '#808080',
-      black: '#000000',
-      white: '#FFFFFF',
-    };
-
     if (colorMap.hasOwnProperty(lowercaseColor)) {
       newEmployee.color = colorMap[lowercaseColor];
     } else if (!isValidColor(newEmployee.color)) {
@@ -150,7 +146,7 @@ app.post('/api/employee/create', cors(corsOptions), (req, res, next) => {
 
 //UPDATE EMPLOYEE BY ID
 
-app.put('/api/employee/:id', cors(corsOptions), (req, res, next) => {
+app.put('/api/employee/:id', (req, res, next) => {
   console.log('PUT /api/employee/:id');
 
   try {
@@ -159,7 +155,8 @@ app.put('/api/employee/:id', cors(corsOptions), (req, res, next) => {
     const index = employees.findIndex(emp => emp.id === id);
     if (index !== -1) {
       //update values if provided, otherwise keep existing values
-      const employee = employees[index];
+      const employee = employees[index], currentColor = employees[index].color;
+
       employee.name = req.body.name || employee.name;
       employee.code = req.body.code || employee.code;
       employee.profession = req.body.profession || employee.profession;
@@ -167,6 +164,14 @@ app.put('/api/employee/:id', cors(corsOptions), (req, res, next) => {
       employee.city = req.body.city || employee.city;
       employee.branch = req.body.branch || employee.branch;
       employee.assigned = req.body.assigned !== undefined ? req.body.assigned : employee.assigned;
+
+      //convert color to hexadecimal if its a valid color name
+      const lowercaseColor = employee.color.toLowerCase();
+      if (colorMap.hasOwnProperty(lowercaseColor)) {
+        employee.color = colorMap[lowercaseColor];
+      } else if (!isValidColor(employee.color)) {
+        employee.color = currentColor;
+      }
 
       //return updated employee data
       res.setHeader('Content-Type', 'application/json');
@@ -183,7 +188,7 @@ app.put('/api/employee/:id', cors(corsOptions), (req, res, next) => {
 
 //DELETE EMPLOYEE BY ID
 
-app.delete('/api/employee/:id', cors(corsOptions), (req, res, next) => {
+app.delete('/api/employee/:id', (req, res, next) => {
   console.log('DELETE /api/employee/:id');
 
   try {
