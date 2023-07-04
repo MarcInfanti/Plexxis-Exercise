@@ -70,7 +70,12 @@ export default function CreateForm() {
     <Box
       component="form"
       sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        "& .MuiTextField-root": {
+          marginBottom: "5px",
+        },
       }}
       noValidate
       autoComplete="off"
@@ -137,8 +142,14 @@ export default function CreateForm() {
           label="Assigned"
         />
       </FormGroup>
-      <Box sx={{ border: 1 }}>
-        <Button variant="contained" onClick={clearForm}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "5px",
+        }}
+      >
+        <Button variant="contained" onClick={clearForm} sx={{ marginRight: "5px" }}>
           Clear Form
         </Button>
         <Button variant="contained" onClick={createEmployee}>

@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import EmployeeForm, { Employee } from "../components/employee-info-form";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 
 async function fetchEmployee(id: string): Promise<Employee> {
   return await fetch(`http://localhost:8080/api/employee/${id}`).then(
@@ -38,10 +38,26 @@ const EmployeeInfo: FC = () => {
   }
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <Typography variant="h1">Employee Info</Typography>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <Typography variant="h1" sx={{ marginBottom: "20px", fontSize: 50 }}>
+        Employee Info
+      </Typography>
       <EmployeeForm data={employee} />
-      <Link to="..">Employees</Link>
+      <Button
+        component={Link}
+        to=".."
+        variant="contained"
+        size="medium"
+        sx={{ marginTop: "10px", fontSize: 25 }}
+      >
+        Back to Employees
+      </Button>
     </Box>
   );
 };

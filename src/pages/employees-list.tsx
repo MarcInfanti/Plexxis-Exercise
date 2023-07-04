@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React, { FC, useEffect, useState } from "react";
 import EmployeeTable, { Employee } from "../components/employee-data-table";
 import { Link } from "react-router-dom";
@@ -19,12 +19,27 @@ const EmployeeList: FC = () => {
   }, []);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", paddingTop: "20px" }}>
-      <Typography variant="h1" sx={{ marginBottom: "20px" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        paddingTop: "20px",
+        textAlign: "center",
+      }}
+    >
+      <Typography variant="h1" sx={{ marginBottom: "20px", fontSize: 50 }}>
         Employee Table
       </Typography>
       <EmployeeTable rows={rows} />
-      <Link to="create">Create New Employee</Link>
+      <Button
+        component={Link}
+        to="create"
+        variant="contained"
+        size="medium"
+        sx={{ paddingTop: "10px", fontSize: 25, marginTop: "10px" }}
+      >
+        Create New Employee
+      </Button>
     </Box>
   );
 };
