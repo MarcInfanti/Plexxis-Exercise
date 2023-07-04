@@ -1,5 +1,6 @@
-import React, { FC } from 'react'
-import { Link } from 'react-router-dom'
+import React, { FC } from "react";
+import { Link } from "react-router-dom";
+import { Typography } from "@mui/material";
 
 const PageNotFound: FC = () => {
   return (
@@ -7,7 +8,7 @@ const PageNotFound: FC = () => {
       <h1>Oops! We couldn't find the page you were looking for.</h1>
       <Link to="/">Back to homepage</Link>
     </div>
-  )
-}
+  );
+};
 
-export default PageNotFound
+export default PageNotFound;

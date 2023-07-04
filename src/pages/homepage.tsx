@@ -1,5 +1,6 @@
-import React, { FC } from 'react'
-import { Link } from 'react-router-dom'
+import React, { FC } from "react";
+import { Link } from "react-router-dom";
+import { Typography } from "@mui/material";
 
 const HomePage: FC = () => {
   return (
@@ -7,7 +8,7 @@ const HomePage: FC = () => {
       <h1>Homepage</h1>
       <Link to="../employees">Employees</Link>
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

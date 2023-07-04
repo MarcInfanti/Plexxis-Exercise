@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Button from '@mui/material/Button';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Button from "@mui/material/Button";
 
 export interface Employee {
   id: number;
@@ -25,12 +25,12 @@ interface EmployeeInfoProps {
 //set form to default values
 const defaultData: Employee = {
   id: 0,
-  name: '',
-  code: '',
-  profession: '',
-  color: '',
-  city: '',
-  branch: '',
+  name: "",
+  code: "",
+  profession: "",
+  color: "",
+  city: "",
+  branch: "",
   assigned: false,
 };
 
@@ -81,17 +81,17 @@ export default function EmployeeForm({ data }: EmployeeInfoProps) {
 
     //PUT request with the updated employee data
     fetch(`http://localhost:8080/api/employee/${data.id}`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(updatedEmployee),
     })
-      .then(response => response.json())
-      .then(updatedData => {
+      .then((response) => response.json())
+      .then((updatedData) => {
         console.log(updatedData); //print successfully updated data
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   };
@@ -99,14 +99,14 @@ export default function EmployeeForm({ data }: EmployeeInfoProps) {
   const deleteEmployee = () => {
     //DELETE request to delete the employee
     fetch(`http://localhost:8080/api/employee/${data.id}`, {
-      method: 'DELETE',
+      method: "DELETE",
     })
-      .then(response => response.json())
-      .then(deletedEmployee => {
+      .then((response) => response.json())
+      .then((deletedEmployee) => {
         console.log(deletedEmployee); //print deleted employee data
-        navigate('/employees'); //redirect to previous page
+        navigate("/employees"); //redirect to previous page
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   };
@@ -123,19 +123,19 @@ export default function EmployeeForm({ data }: EmployeeInfoProps) {
     };
 
     //POST request to create a new employee
-    fetch('http://localhost:8080/api/employee/create', {
-      method: 'POST',
+    fetch("http://localhost:8080/api/employee/create", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(newEmployee),
     })
-      .then(response => response.json())
-      .then(createdEmployee => {
+      .then((response) => response.json())
+      .then((createdEmployee) => {
         console.log(createdEmployee); //print created employee data
-        navigate('/employees'); //redirect to employees page
+        navigate("/employees"); //redirect to employees page
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   };
@@ -144,7 +144,7 @@ export default function EmployeeForm({ data }: EmployeeInfoProps) {
     <Box
       component="form"
       sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
+        "& .MuiTextField-root": { m: 1, width: "25ch" },
       }}
       noValidate
       autoComplete="off"
