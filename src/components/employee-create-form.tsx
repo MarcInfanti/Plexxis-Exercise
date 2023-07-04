@@ -149,7 +149,11 @@ export default function CreateForm() {
           marginTop: "5px",
         }}
       >
-        <Button variant="contained" onClick={clearForm} sx={{ marginRight: "5px" }}>
+        <Button
+          variant="contained"
+          onClick={clearForm}
+          sx={{ marginRight: "5px" }}
+        >
           Clear Form
         </Button>
         <Button variant="contained" onClick={createEmployee}>

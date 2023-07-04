@@ -10,7 +10,7 @@ const PageNotFound: FC = () => {
         flexDirection: "column",
         alignItems: "center",
         textAlign: "center",
-        paddingTop: "50px"
+        paddingTop: "50px",
       }}
     >
       <Typography variant="h1" fontSize={30}>

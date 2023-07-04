@@ -18,15 +18,20 @@ const HomePage: FC = () => {
       </Typography>
       <Typography variant="body1" sx={{ marginTop: "10px" }}>
         Hello! Welcome to my sample CRUD application. <br />
-
-        This is the react front end of the application. It consists of 3 main pages that use the back end api, those being the employees list and the create/edit employee forms respectively.<br />
-
-        This app uses 5 different api endpoints to create, display, update, and delete employees. It does not persist changes between sessions.<br />
-
-        Data is loaded dynamically from the back end api, and reloaded with every page navigation to keep the data displayed up to date.<br />
-
-        The back end performs data validation and data manipulation with specific requests, and returns accurate error codes. It is also built to avoid crashes.<br />
-
+        This is the react front end of the application. It consists of 3 main
+        pages that use the back end api, those being the employees list and the
+        create/edit employee forms respectively.
+        <br />
+        This app uses 5 different api endpoints to create, display, update, and
+        delete employees. It does not persist changes between sessions.
+        <br />
+        Data is loaded dynamically from the back end api, and reloaded with
+        every page navigation to keep the data displayed up to date.
+        <br />
+        The back end performs data validation and data manipulation with
+        specific requests, and returns accurate error codes. It is also built to
+        avoid crashes.
+        <br />
         Below is the button to the main employee page. Enjoy!
       </Typography>
       <Button

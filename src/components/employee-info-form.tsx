@@ -94,7 +94,7 @@ export default function EmployeeForm({ data }: EmployeeInfoProps) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        "& .MuiTextField-root": { marginBottom: "10px" }
+        "& .MuiTextField-root": { marginBottom: "10px" },
       }}
       noValidate
       autoComplete="off"
@@ -162,12 +162,18 @@ export default function EmployeeForm({ data }: EmployeeInfoProps) {
           label="Assigned"
         />
       </FormGroup>
-      <Box sx={{
+      <Box
+        sx={{
           display: "flex",
           justifyContent: "center",
           marginTop: "5px",
-        }}>
-        <Button variant="contained" onClick={update} sx={{ marginRight: "5px" }}>
+        }}
+      >
+        <Button
+          variant="contained"
+          onClick={update}
+          sx={{ marginRight: "5px" }}
+        >
           Update Employee
         </Button>
         <Button variant="contained" onClick={deleteEmployee}>
