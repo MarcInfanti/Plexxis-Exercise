@@ -6,6 +6,7 @@ import RootLayout from "./layouts/root";
 import HomePage from "./pages/homepage";
 import EmployeeList from "./pages/employees-list";
 import EmployeeInfo from "./pages/employee-info";
+import CreateEmployee from "./pages/create-employee"
 import PageNotFound from "./pages/page-not-found";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="" element={<RootLayout />}>
           <Route path="" element={<EmployeeList />} />
           <Route path=":id" element={<EmployeeInfo />} />
+          <Route path="create" element={<CreateEmployee />}/>
         </Route>
       </Route>
       <Route path="*" element={<PageNotFound />} />

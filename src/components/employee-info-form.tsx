@@ -22,18 +22,6 @@ interface EmployeeInfoProps {
   data: Employee;
 }
 
-//set form to default values
-const defaultData: Employee = {
-  id: 0,
-  name: "",
-  code: "",
-  profession: "",
-  color: "",
-  city: "",
-  branch: "",
-  assigned: false,
-};
-
 export default function EmployeeForm({ data }: EmployeeInfoProps) {
   const navigate = useNavigate();
 
@@ -44,18 +32,6 @@ export default function EmployeeForm({ data }: EmployeeInfoProps) {
   const [city, setCity] = useState(data.city);
   const [branch, setBranch] = useState(data.branch);
   const [assigned, setAssigned] = useState(data.assigned);
-  const [idDisabled, setIdDisabled] = useState(false);
-
-  const clearForm = () => {
-    setName(defaultData.name);
-    setCode(defaultData.code);
-    setProfession(defaultData.profession);
-    setColor(defaultData.color);
-    setCity(defaultData.city);
-    setBranch(defaultData.branch);
-    setAssigned(defaultData.assigned);
-    setIdDisabled(true);
-  };
 
   useEffect(() => {
     setName(data.name);
@@ -111,35 +87,6 @@ export default function EmployeeForm({ data }: EmployeeInfoProps) {
       });
   };
 
-  const createEmployee = () => {
-    const newEmployee = {
-      name,
-      code,
-      profession,
-      color,
-      city,
-      branch,
-      assigned,
-    };
-
-    //POST request to create a new employee
-    fetch("http://localhost:8080/api/employee/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newEmployee),
-    })
-      .then((response) => response.json())
-      .then((createdEmployee) => {
-        console.log(createdEmployee); //print created employee data
-        navigate("/employees"); //redirect to employees page
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
   return (
     <Box
       component="form"
@@ -155,7 +102,6 @@ export default function EmployeeForm({ data }: EmployeeInfoProps) {
         value={`${data.id}`}
         InputProps={{
           readOnly: true,
-          disabled: idDisabled,
         }}
       />
       <TextField
@@ -219,14 +165,6 @@ export default function EmployeeForm({ data }: EmployeeInfoProps) {
         </Button>
         <Button variant="contained" onClick={deleteEmployee}>
           Delete Employee
-        </Button>
-      </Box>
-      <Box sx={{ border: 1 }}>
-        <Button variant="contained" onClick={clearForm}>
-          Clear Form
-        </Button>
-        <Button variant="contained" onClick={createEmployee}>
-          Create Employee
         </Button>
       </Box>
     </Box>
