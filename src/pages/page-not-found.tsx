@@ -1,13 +1,23 @@
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
 const PageNotFound: FC = () => {
   return (
-    <div>
-      <h1>Oops! We couldn't find the page you were looking for.</h1>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
+        paddingTop: "50px"
+      }}
+    >
+      <Typography variant="h1" fontSize={30}>
+        Oops! We couldn't find the page you were looking for.
+      </Typography>
       <Link to="/">Back to homepage</Link>
-    </div>
+    </Box>
   );
 };
 

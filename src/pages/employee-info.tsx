@@ -54,7 +54,7 @@ const EmployeeInfo: FC = () => {
         to=".."
         variant="contained"
         size="medium"
-        sx={{ marginTop: "10px", fontSize: 25 }}
+        sx={{ marginTop: "10px", fontSize: 29 }}
       >
         Back to Employees
       </Button>
