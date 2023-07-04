@@ -67,7 +67,7 @@ To run the application, follow these steps:
 
 The application will automatically open in your default browser.
 
-## Available Scripts
+## NPM Scripts
 
 - `npm start`: Starts both the front-end and back-end servers simultaneously.
 - `npm run start:react-app`: Starts only the front-end server.
